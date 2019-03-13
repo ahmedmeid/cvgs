@@ -11,19 +11,21 @@
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="vehicles">
-        <table class="table table-striped">
+        <table id="vehiclesTable" class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <!-- <th><span jhiTranslate="global.field.id">ID</span></th> -->
             <th><span jhiTranslate="cvgsApp.cmsVehicle.vehicleId">Vehicle Id</span></th>
             <th><span jhiTranslate="cvgsApp.cmsVehicle.vehicleRegNo">Vehicle Reg No</span></th>
             <th><span jhiTranslate="cvgsApp.cmsVehicle.owner">Owner</span></th>
+            <th *ngIf="vehiclesConnectionStatusMap"><span>Connection Status</span></th>
+            <th *ngIf="vehiclesConnectionStatusMap"><span>Last Updated</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let vehicle of vehicles ;trackBy: trackId">
-                <td><a [routerLink]="['/vehicle', vehicle.id, 'view' ]">{{vehicle.id}}</a></td>
+               <!-- <td><a [routerLink]="['/vehicle', vehicle.id, 'view' ]">{{vehicle.id}}</a></td> -->
                 <td>{{vehicle.vehicleId}}</td>
                 <td>{{vehicle.vehicleRegNo}}</td>
                 <td>
@@ -31,6 +33,8 @@
                         <a [routerLink]="['../customer', vehicle.owner?.id, 'view' ]" >{{vehicle.owner?.name}}</a>
                     </div>
                 </td>
+                <td>{{vehiclesConnectionStatusMap[vehicle.vehicleId].status}}</td>
+                <td>{{vehiclesConnectionStatusMap[vehicle.vehicleId].lastUpdated | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -58,5 +62,35 @@
             </tr>
             </tbody>
         </table>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablefilter/2.5.0/tablefilter.js"></script>
+        <script data-config>
+            var filtersConfig = {
+                base_path: 'https://cdnjs.cloudflare.com/ajax/libs/tablefilter/2.5.0/',
+                grid_layout: true,
+                alternate_rows: true,
+                btn_reset: true,
+                rows_counter: true,
+                loader: true,
+                status_bar: true,
+                no_results_message: true,
+                mark_active_columns: {
+                    highlight_column: true
+                },
+                col_2: 'select',
+                col_3: 'select',
+                col_types: [
+                    'string', 'string', 'string',
+                    'string', 'date'
+                ],
+                extensions:[{
+                    name: 'sort'
+                }]
+            };
+
+            var tf = new TableFilter('vehiclesTable', filtersConfig);
+            tf.init();
+
+        </script>
     </div>
 </div>

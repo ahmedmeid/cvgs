@@ -7,6 +7,11 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IVehicle } from 'app/shared/model/cms/vehicle.model';
 import { AccountService } from 'app/core';
 import { VehicleService } from './vehicle.service';
+import { SocketService } from './socket.service';
+import * as SockJS from 'sockjs-client';
+import { VehicleConnectionStatusService } from 'app/entities/vds/vehicle-connection-status';
+import { IVehicleConnectionStatus } from 'app/shared/model/vds/vehicle-connection-status.model';
+import TableFilter from 'tablefilter';
 
 @Component({
     selector: 'jhi-vehicle',
@@ -14,11 +19,16 @@ import { VehicleService } from './vehicle.service';
 })
 export class VehicleComponent implements OnInit, OnDestroy {
     vehicles: IVehicle[];
+    vehiclesConnectionStatus: IVehicleConnectionStatus[];
+    vehiclesConnectionStatusMap: Object = {};
+    socket: SockJS;
     currentAccount: any;
     eventSubscriber: Subscription;
 
     constructor(
         protected vehicleService: VehicleService,
+        protected vehicleConnectionStatusService: VehicleConnectionStatusService,
+        protected socketService: SocketService,
         protected jhiAlertService: JhiAlertService,
         protected eventManager: JhiEventManager,
         protected accountService: AccountService
@@ -34,6 +44,29 @@ export class VehicleComponent implements OnInit, OnDestroy {
             .subscribe(
                 (res: IVehicle[]) => {
                     this.vehicles = res;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        this.vehicleConnectionStatusService
+            .query()
+            .pipe(
+                filter((res: HttpResponse<IVehicleConnectionStatus[]>) => res.ok),
+                map((res: HttpResponse<IVehicleConnectionStatus[]>) => res.body)
+            )
+            .subscribe(
+                (res: IVehicleConnectionStatus[]) => {
+                    this.vehiclesConnectionStatus = res;
+                    this.vehiclesConnectionStatusMap = res.reduce(function(mapi, obj) {
+                        mapi[obj.vehicleId] = obj;
+                        return mapi;
+                    }, {});
+
+                    this.socket = this.socketService.initSocket();
+                    const self = this;
+                    this.socket.onmessage = function(e) {
+                        const message = JSON.parse(e.data);
+                        self.vehiclesConnectionStatusMap[message.id] = message;
+                    };
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );

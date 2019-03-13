@@ -6,6 +6,7 @@ import java.util.Iterator;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.annotation.Splitter;
@@ -25,6 +26,7 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 
+@Configuration
 public class MqttConfiguration {
 	
 	@Autowired
@@ -74,7 +76,7 @@ public class MqttConfiguration {
 	@Bean
 	public MessageProducerSupport mqttInbound() {
 		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter("VehicleDataStream",
-				mqttClientFactory(), "states/car");
+				mqttClientFactory(), "states/#");
 		adapter.setCompletionTimeout(5000);
 		adapter.setConverter(new DefaultPahoMessageConverter());
 		adapter.setQos(1);
