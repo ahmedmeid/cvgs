@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-vehicle-data-heading" jhiTranslate="cvgsApp.vdsVehicleData.home.createOrEditLabel">Create or edit a Vehicle Data</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!vehicleData.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="vehicleData.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleData.vehicleId" for="field_vehicleId">Vehicle Id</label>
+                    <input type="text" class="form-control" name="vehicleId" id="field_vehicleId"
+                        [(ngModel)]="vehicleData.vehicleId" required/>
+                    <div [hidden]="!(editForm.controls.vehicleId?.dirty && editForm.controls.vehicleId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.vehicleId?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleData.longitude" for="field_longitude">Longitude</label>
+                    <input type="text" class="form-control" name="longitude" id="field_longitude"
+                        [(ngModel)]="vehicleData.longitude" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleData.latitude" for="field_latitude">Latitude</label>
+                    <input type="text" class="form-control" name="latitude" id="field_latitude"
+                        [(ngModel)]="vehicleData.latitude" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleData.speed" for="field_speed">Speed</label>
+                    <input type="number" class="form-control" name="speed" id="field_speed"
+                        [(ngModel)]="vehicleData.speed" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleData.fuelLevel" for="field_fuelLevel">Fuel Level</label>
+                    <input type="number" class="form-control" name="fuelLevel" id="field_fuelLevel"
+                        [(ngModel)]="vehicleData.fuelLevel" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleData.timeStamp" for="field_timeStamp">Time Stamp</label>
+                    <div class="d-flex">
+                        <input id="field_timeStamp" type="datetime-local" class="form-control" name="timeStamp" [(ngModel)]="timeStamp" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

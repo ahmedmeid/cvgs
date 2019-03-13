@@ -1,0 +1,9 @@
+{
+    "cvgsApp": {
+        "ConnectionStatus": {
+            "null": "",
+            "CONNECTED": "CONNECTED",
+            "DISCONNECTED": "DISCONNECTED"
+        }
+    }
+}

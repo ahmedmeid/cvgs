@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-vehicle-connection-status-history-heading" jhiTranslate="cvgsApp.vdsVehicleConnectionStatusHistory.home.createOrEditLabel">Create or edit a Vehicle Connection Status History</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!vehicleConnectionStatusHistory.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="vehicleConnectionStatusHistory.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleConnectionStatusHistory.vehicleId" for="field_vehicleId">Vehicle Id</label>
+                    <input type="text" class="form-control" name="vehicleId" id="field_vehicleId"
+                        [(ngModel)]="vehicleConnectionStatusHistory.vehicleId" required/>
+                    <div [hidden]="!(editForm.controls.vehicleId?.dirty && editForm.controls.vehicleId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.vehicleId?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleConnectionStatusHistory.status" for="field_status">Status</label>
+                    <input type="text" class="form-control" name="status" id="field_status"
+                        [(ngModel)]="vehicleConnectionStatusHistory.status" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.vdsVehicleConnectionStatusHistory.statusAt" for="field_statusAt">Status At</label>
+                    <div class="d-flex">
+                        <input id="field_statusAt" type="datetime-local" class="form-control" name="statusAt" [(ngModel)]="statusAt" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

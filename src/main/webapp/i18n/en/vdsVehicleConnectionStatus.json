@@ -1,0 +1,27 @@
+{
+    "cvgsApp": {
+        "vdsVehicleConnectionStatus": {
+            "home": {
+                "title": "Vehicle Connection Statuses",
+                "createLabel": "Create a new Vehicle Connection Status",
+                "createOrEditLabel": "Create or edit a Vehicle Connection Status"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle Connection Status {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Connection Status"
+            },
+            "vehicleId": "Vehicle Id",
+            "status": "Status",
+            "lastUpdated": "Last Updated"
+        }
+    },
+    "vdsApp": {
+        "vdsVehicleConnectionStatus": {
+            "created": "A new Vehicle Connection Status is created with identifier {{ param }}",
+            "updated": "A Vehicle Connection Status is updated with identifier {{ param }}",
+            "deleted": "A Vehicle Connection Status is deleted with identifier {{ param }}"
+        }
+    }
+}

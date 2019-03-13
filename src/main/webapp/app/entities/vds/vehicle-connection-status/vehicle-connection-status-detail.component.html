@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="vehicleConnectionStatus">
+            <h2><span jhiTranslate="cvgsApp.vdsVehicleConnectionStatus.detail.title">Vehicle Connection Status</span> {{vehicleConnectionStatus.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cvgsApp.vdsVehicleConnectionStatus.vehicleId">Vehicle Id</span></dt>
+                <dd>
+                    <span>{{vehicleConnectionStatus.vehicleId}}</span>
+                </dd>
+                <dt><span jhiTranslate="cvgsApp.vdsVehicleConnectionStatus.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cvgsApp.ConnectionStatus.' + vehicleConnectionStatus.status}}">{{vehicleConnectionStatus.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="cvgsApp.vdsVehicleConnectionStatus.lastUpdated">Last Updated</span></dt>
+                <dd>
+                    <span>{{vehicleConnectionStatus.lastUpdated}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/vehicle-connection-status', vehicleConnectionStatus.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

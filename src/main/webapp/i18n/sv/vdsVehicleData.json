@@ -1,0 +1,30 @@
+{
+    "cvgsApp": {
+        "vdsVehicleData": {
+            "home": {
+                "title": "Vehicle Data",
+                "createLabel": "Skapa en ny Vehicle Data",
+                "createOrEditLabel": "Skapa eller ändra en Vehicle Data"
+            },
+            "delete": {
+                "question": "Är du säker på att du vill ta bort Vehicle Data {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Data"
+            },
+            "vehicleId": "Vehicle Id",
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "speed": "Speed",
+            "fuelLevel": "Fuel Level",
+            "timeStamp": "Time Stamp"
+        }
+    },
+    "vdsApp": {
+        "vdsVehicleData": {
+            "created": "En ny Vehicle Data är skapad med id {{ param }}",
+            "updated": "En Vehicle Data är uppdaterad med id  {{ param }}",
+            "deleted": "En Vehicle Data är borttagen med id  {{ param }}"
+        }
+    }
+}

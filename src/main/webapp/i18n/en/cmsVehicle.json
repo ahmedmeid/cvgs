@@ -1,0 +1,27 @@
+{
+    "cvgsApp": {
+        "cmsVehicle": {
+            "home": {
+                "title": "Vehicles",
+                "createLabel": "Create a new Vehicle",
+                "createOrEditLabel": "Create or edit a Vehicle"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle"
+            },
+            "vehicleId": "Vehicle Id",
+            "vehicleRegNo": "Vehicle Reg No",
+            "owner": "Owner"
+        }
+    },
+    "cmsApp": {
+        "cmsVehicle": {
+            "created": "A new Vehicle is created with identifier {{ param }}",
+            "updated": "A Vehicle is updated with identifier {{ param }}",
+            "deleted": "A Vehicle is deleted with identifier {{ param }}"
+        }
+    }
+}

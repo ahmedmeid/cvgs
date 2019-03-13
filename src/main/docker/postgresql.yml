@@ -1,0 +1,11 @@
+version: '2'
+services:
+    cvgs-postgresql:
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/jhipster/cvgs/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=cvgs
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

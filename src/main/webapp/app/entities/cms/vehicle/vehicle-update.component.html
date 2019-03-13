@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-vehicle-heading" jhiTranslate="cvgsApp.cmsVehicle.home.createOrEditLabel">Create or edit a Vehicle</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!vehicle.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="vehicle.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.cmsVehicle.vehicleId" for="field_vehicleId">Vehicle Id</label>
+                    <input type="text" class="form-control" name="vehicleId" id="field_vehicleId"
+                        [(ngModel)]="vehicle.vehicleId" required/>
+                    <div [hidden]="!(editForm.controls.vehicleId?.dirty && editForm.controls.vehicleId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.vehicleId?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.cmsVehicle.vehicleRegNo" for="field_vehicleRegNo">Vehicle Reg No</label>
+                    <input type="text" class="form-control" name="vehicleRegNo" id="field_vehicleRegNo"
+                        [(ngModel)]="vehicle.vehicleRegNo" required/>
+                    <div [hidden]="!(editForm.controls.vehicleRegNo?.dirty && editForm.controls.vehicleRegNo?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.vehicleRegNo?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cvgsApp.cmsVehicle.owner" for="field_owner">Owner</label>
+                    <select class="form-control" id="field_owner" name="owner" [(ngModel)]="vehicle.owner"  required>
+                        <option *ngIf="!editForm.value.owner" [ngValue]="null" selected></option>
+                        <option [ngValue]="customerOption.id === vehicle.owner?.id ? vehicle.owner : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.owner?.dirty && editForm.controls.owner?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.owner?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

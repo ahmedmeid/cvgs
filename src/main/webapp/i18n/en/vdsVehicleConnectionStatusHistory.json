@@ -1,0 +1,27 @@
+{
+    "cvgsApp": {
+        "vdsVehicleConnectionStatusHistory": {
+            "home": {
+                "title": "Vehicle Connection Status Histories",
+                "createLabel": "Create a new Vehicle Connection Status History",
+                "createOrEditLabel": "Create or edit a Vehicle Connection Status History"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle Connection Status History {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Connection Status History"
+            },
+            "vehicleId": "Vehicle Id",
+            "status": "Status",
+            "statusAt": "Status At"
+        }
+    },
+    "vdsApp": {
+        "vdsVehicleConnectionStatusHistory": {
+            "created": "A new Vehicle Connection Status History is created with identifier {{ param }}",
+            "updated": "A Vehicle Connection Status History is updated with identifier {{ param }}",
+            "deleted": "A Vehicle Connection Status History is deleted with identifier {{ param }}"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "cvgsApp": {
+        "vdsVehicleData": {
+            "home": {
+                "title": "Vehicle Data",
+                "createLabel": "Create a new Vehicle Data",
+                "createOrEditLabel": "Create or edit a Vehicle Data"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Vehicle Data {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Data"
+            },
+            "vehicleId": "Vehicle Id",
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "speed": "Speed",
+            "fuelLevel": "Fuel Level",
+            "timeStamp": "Time Stamp"
+        }
+    },
+    "vdsApp": {
+        "vdsVehicleData": {
+            "created": "A new Vehicle Data is created with identifier {{ param }}",
+            "updated": "A Vehicle Data is updated with identifier {{ param }}",
+            "deleted": "A Vehicle Data is deleted with identifier {{ param }}"
+        }
+    }
+}

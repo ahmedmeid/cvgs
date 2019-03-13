@@ -1,0 +1,27 @@
+{
+    "cvgsApp": {
+        "vdsVehicleConnectionStatusHistory": {
+            "home": {
+                "title": "Vehicle Connection Status Histories",
+                "createLabel": "Skapa en ny Vehicle Connection Status History",
+                "createOrEditLabel": "Skapa eller ändra en Vehicle Connection Status History"
+            },
+            "delete": {
+                "question": "Är du säker på att du vill ta bort Vehicle Connection Status History {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle Connection Status History"
+            },
+            "vehicleId": "Vehicle Id",
+            "status": "Status",
+            "statusAt": "Status At"
+        }
+    },
+    "vdsApp": {
+        "vdsVehicleConnectionStatusHistory": {
+            "created": "En ny Vehicle Connection Status History är skapad med id {{ param }}",
+            "updated": "En Vehicle Connection Status History är uppdaterad med id  {{ param }}",
+            "deleted": "En Vehicle Connection Status History är borttagen med id  {{ param }}"
+        }
+    }
+}

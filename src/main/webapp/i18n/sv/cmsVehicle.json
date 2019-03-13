@@ -1,0 +1,27 @@
+{
+    "cvgsApp": {
+        "cmsVehicle": {
+            "home": {
+                "title": "Vehicles",
+                "createLabel": "Skapa en ny Vehicle",
+                "createOrEditLabel": "Skapa eller ändra en Vehicle"
+            },
+            "delete": {
+                "question": "Är du säker på att du vill ta bort Vehicle {{ id }}?"
+            },
+            "detail": {
+                "title": "Vehicle"
+            },
+            "vehicleId": "Vehicle Id",
+            "vehicleRegNo": "Vehicle Reg No",
+            "owner": "Owner"
+        }
+    },
+    "cmsApp": {
+        "cmsVehicle": {
+            "created": "En ny Vehicle är skapad med id {{ param }}",
+            "updated": "En Vehicle är uppdaterad med id  {{ param }}",
+            "deleted": "En Vehicle är borttagen med id  {{ param }}"
+        }
+    }
+}

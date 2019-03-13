@@ -1,0 +1,44 @@
+{
+    "name": "Vehicle",
+    "fields": [
+        {
+            "fieldName": "vehicleId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "unique",
+                "required"
+            ]
+        },
+        {
+            "fieldName": "vehicleRegNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "unique",
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "customer",
+            "otherEntityRelationshipName": "vehicle",
+            "relationshipValidateRules": "required",
+            "relationshipName": "owner",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190313084935",
+    "entityTableName": "vehicle",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "cvgs",
+        "cms"
+    ],
+    "microserviceName": "cms"
+}
