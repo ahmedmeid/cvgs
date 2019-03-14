@@ -38,8 +38,8 @@ script:
   - ./mvnw clean test
   - ./mvnw com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test' -Dmaven.repo.local=$MAVEN_USER_HOME
   - ./mvnw org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Dsonar.organization=ahmedmeid-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
-  - ./mvnw verify -Pprod -DskipTests
   - ./mvnw package -Pprod verify jib:dockerBuild
+  - docker image tag cvgs $DOCKER_USERNAME/cvgs
   - docker push $DOCKER_USERNAME/cvgs:$TRAVIS_BUILD_ID
 notifications:
   webhooks:
