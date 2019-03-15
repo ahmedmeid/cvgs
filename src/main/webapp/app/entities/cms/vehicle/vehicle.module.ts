@@ -13,6 +13,8 @@ import {
     vehicleRoute,
     vehiclePopupRoute
 } from './';
+import { ConnectionStatusPip } from 'app/entities/cms/vehicle/connection-status.pipe';
+import { OwnerPipe } from 'app/entities/cms/vehicle/owner.pipe';
 
 const ENTITY_STATES = [...vehicleRoute, ...vehiclePopupRoute];
 
@@ -23,7 +25,9 @@ const ENTITY_STATES = [...vehicleRoute, ...vehiclePopupRoute];
         VehicleDetailComponent,
         VehicleUpdateComponent,
         VehicleDeleteDialogComponent,
-        VehicleDeletePopupComponent
+        VehicleDeletePopupComponent,
+        ConnectionStatusPip,
+        OwnerPipe
     ],
     entryComponents: [VehicleComponent, VehicleUpdateComponent, VehicleDeleteDialogComponent, VehicleDeletePopupComponent],
     providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],

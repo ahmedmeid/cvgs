@@ -11,7 +11,8 @@ import { SocketService } from './socket.service';
 import * as SockJS from 'sockjs-client';
 import { VehicleConnectionStatusService } from 'app/entities/vds/vehicle-connection-status';
 import { IVehicleConnectionStatus } from 'app/shared/model/vds/vehicle-connection-status.model';
-import TableFilter from 'tablefilter';
+import { ICustomer } from 'app/shared/model/cms/customer.model';
+import { CustomerService } from 'app/entities/cms/customer';
 
 @Component({
     selector: 'jhi-vehicle',
@@ -19,15 +20,19 @@ import TableFilter from 'tablefilter';
 })
 export class VehicleComponent implements OnInit, OnDestroy {
     vehicles: IVehicle[];
+    customers: ICustomer[];
     vehiclesConnectionStatus: IVehicleConnectionStatus[];
     vehiclesConnectionStatusMap: Object = {};
     socket: SockJS;
     currentAccount: any;
     eventSubscriber: Subscription;
+    filterByStatus = 'ALL';
+    filterByOwner = 'ALL';
 
     constructor(
         protected vehicleService: VehicleService,
         protected vehicleConnectionStatusService: VehicleConnectionStatusService,
+        protected customerService: CustomerService,
         protected socketService: SocketService,
         protected jhiAlertService: JhiAlertService,
         protected eventManager: JhiEventManager,
@@ -44,6 +49,18 @@ export class VehicleComponent implements OnInit, OnDestroy {
             .subscribe(
                 (res: IVehicle[]) => {
                     this.vehicles = res;
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        this.customerService
+            .query()
+            .pipe(
+                filter((res: HttpResponse<ICustomer[]>) => res.ok),
+                map((res: HttpResponse<ICustomer[]>) => res.body)
+            )
+            .subscribe(
+                (res: ICustomer[]) => {
+                    this.customers = res;
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
@@ -95,5 +112,13 @@ export class VehicleComponent implements OnInit, OnDestroy {
 
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    onChangeStatus(optionFromMenu) {
+        this.filterByStatus = optionFromMenu;
+    }
+
+    onChangeOwner(optionFromMenu) {
+        this.filterByOwner = optionFromMenu;
     }
 }

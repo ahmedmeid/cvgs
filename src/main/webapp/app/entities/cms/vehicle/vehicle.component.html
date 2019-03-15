@@ -10,6 +10,17 @@
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
+    <span>Show</span>
+    <select (change)="onChangeStatus($event.target.value)">
+        <option value="ALL" selected="selected">ALL</option>
+        <option value="CONNECTED">CONNECTED</option>
+        <option value="DISCONNECTED" >DISCONNECTED</option>
+    </select>
+    <span>Owner</span>
+    <select (change)="onChangeOwner($event.target.value)">
+        <option value="ALL" selected="selected">ALL</option>
+        <option *ngFor="let customer of customers" value={{customer.name}}>{{customer.name}}</option>
+    </select>
     <div class="table-responsive" *ngIf="vehicles">
         <table id="vehiclesTable" class="table table-striped">
             <thead>
@@ -24,7 +35,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let vehicle of vehicles ;trackBy: trackId">
+            <tr *ngFor="let vehicle of vehicles | owner:filterByOwner | connectionstatus:vehiclesConnectionStatusMap:filterByStatus ">
                <!-- <td><a [routerLink]="['/vehicle', vehicle.id, 'view' ]">{{vehicle.id}}</a></td> -->
                 <td>{{vehicle.vehicleId}}</td>
                 <td>{{vehicle.vehicleRegNo}}</td>
