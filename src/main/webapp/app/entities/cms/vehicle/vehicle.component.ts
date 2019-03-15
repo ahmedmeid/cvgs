@@ -60,13 +60,6 @@ export class VehicleComponent implements OnInit, OnDestroy {
                         mapi[obj.vehicleId] = obj;
                         return mapi;
                     }, {});
-
-                    this.socket = this.socketService.initSocket();
-                    const self = this;
-                    this.socket.onmessage = function(e) {
-                        const message = JSON.parse(e.data);
-                        self.vehiclesConnectionStatusMap[message.id] = message;
-                    };
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
@@ -78,6 +71,14 @@ export class VehicleComponent implements OnInit, OnDestroy {
             this.currentAccount = account;
         });
         this.registerChangeInVehicles();
+        this.socket = this.socketService.initSocket();
+        const self = this;
+        this.socket.onmessage = function(e) {
+            let message = JSON.parse(e.data);
+            console.log('received a message: ' + JSON.stringify(message));
+            self.vehiclesConnectionStatusMap[message.vehicleId].status = message.status;
+            self.vehiclesConnectionStatusMap[message.vehicleId].lastUpdated = message.lastUpdated;
+        };
     }
 
     ngOnDestroy() {

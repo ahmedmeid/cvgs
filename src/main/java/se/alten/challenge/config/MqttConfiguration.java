@@ -34,7 +34,7 @@ public class MqttConfiguration {
 	
 	@Bean
 	public ServerWebSocketContainer serverWebSocketContainer() {
-		return new ServerWebSocketContainer("/socket").withSockJs();
+		return new ServerWebSocketContainer("/socket").withSockJs().setAllowedOrigins("*");
 	}
 	
 	
